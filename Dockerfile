@@ -4,8 +4,8 @@ RUN apt update \
     default-jdk \
  && rm -rf /var/lib/apt/lists/*
 WORKDIR /opt
-COPY apache-tomcat-*.tar.gz tomcat/ \
- && apache-maven-*-bin.tar.gz maven/
+COPY apache-tomcat-*.tar.gz tomcat/
+COPY apache-maven-*-bin.tar.gz maven/
 RUN tar xpvf tomcat/apache-tomcat-*.tar.gz -C tomcat/ --strip-components=1 \
  && rm -f tomcat/apache-tomcat-*.tar.gz \
  && tar xpvf maven/apache-maven-*-bin.tar.gz -C maven/ --strip-components=1 \
