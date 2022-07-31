@@ -17,5 +17,5 @@ ENV CATALINA_OPTS="-Xms512M -Xmx1024M -server -XX:+UseParallelGC"
 ENV M2_HOME=/opt/maven
 ENV MAVEN_HOME=/opt/maven
 ENV PATH=${M2_HOME}/bin:${PATH}
-CMD ["/opt/start.sh"]
+CMD ["start.sh"]
 EXPOSE 8080
