@@ -3,13 +3,10 @@ RUN apt update \
  && apt install -y \
     default-jdk \
  && rm -rf /var/lib/apt/lists/*
-#RUN useradd -m -U -d /opt/tomcat -s /bin/false tomcat
 WORKDIR /opt
 COPY apache-tomcat-*.tar.gz tomcat/
 RUN tar xpvf tomcat/apache-tomcat-*.tar.gz -C tomcat/ --strip-components=1 \
  && rm -f tomcat/apache-tomcat-*.tar.gz
-#RUN chown tomcat:tomcat tomcat/ -R \
-# && chmod u+x tomcat/bin -R
 ENV JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64
 ENV JAVA_OPTS=-Djava.security.egd=file:///dev/urandom
 ENV CATALINA_PID=/opt/tomcat/temp/tomcat.pid
