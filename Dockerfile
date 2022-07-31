@@ -16,5 +16,5 @@ ENV JAVA_OPTS=-Djava.security.egd=file:///dev/urandom
 ENV CATALINA_PID=/opt/tomcat/temp/tomcat.pid
 ENV CATALINA_OPTS="-Xms512M -Xmx1024M -server -XX:+UseParallelGC"
 COPY tomcat-users.xml tomcat/conf/tomcat-users.xml
-CMD tomcat/bin/startup.sh run && tail -f /opt/tomcat/logs/catalina.out
+CMD su tomcat tomcat/bin/startup.sh run && tail -f /opt/tomcat/logs/catalina.out
 EXPOSE 8080
