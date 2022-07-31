@@ -159,3 +159,5 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 .idea/
 venv/
+apache-tomcat-*.tar.gz
+apache-maven-*-bin.tar.gz
