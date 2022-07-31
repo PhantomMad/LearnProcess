@@ -5,6 +5,6 @@ RUN apt update \
     default-jdk \
     wget \
  && rm -rf /var/lib/apt/lists/*
-COPY apache-tomcat-*.tar.gz /tmp \
- && tar xpvf /tmp/apache-tomcat-*.tar.gz -C /opt/tomcat --strip-components=1
+COPY apache-tomcat-*.tar.gz /opt/tomcat \
+ && tar xpvf /opt/tomcat/apache-tomcat-*.tar.gz -C /opt/tomcat --strip-components=1
 EXPOSE 80
