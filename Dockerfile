@@ -13,4 +13,4 @@ ENV JAVA_OPTS=-Djava.security.egd=file:///dev/urandom
 ENV CATALINA_PID=/opt/tomcat/temp/tomcat.pid
 ENV CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC
 CMD ["tomcat/bin/startup.sh"]
-EXPOSE 80
+EXPOSE 8080
