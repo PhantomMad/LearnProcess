@@ -6,10 +6,13 @@ RUN apt update \
  && rm -rf /var/lib/apt/lists/*
 WORKDIR /opt
 COPY apache-tomcat-*.tar.gz tomcat/
-COPY tomcat-users.xml tomcat/
 COPY apache-maven-*-bin.tar.gz maven/
-COPY start.sh .
-RUN chmod +x start.sh
+RUN tar xpvf tomcat/apache-tomcat-*.tar.gz -C tomcat/ --strip-components=1 \
+ && rm -f tomcat/apache-tomcat-*.tar.gz \
+ && tar xpvf maven/apache-maven-*-bin.tar.gz -C maven/ --strip-components=1 \
+ && rm -f maven/apache-maven-*-bin.tar.gz
+RUN mkdir git/ \
+ && git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git git/
 ENV JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64
 ENV JAVA_OPTS=-Djava.security.egd=file:///dev/urandom
 ENV CATALINA_PID=/opt/tomcat/temp/tomcat.pid
@@ -17,5 +20,10 @@ ENV CATALINA_OPTS="-Xms512M -Xmx1024M -server -XX:+UseParallelGC"
 ENV M2_HOME=/opt/maven
 ENV MAVEN_HOME=/opt/maven
 ENV PATH=${M2_HOME}/bin:${PATH}
-CMD ["/opt/start.sh"]
+RUN cd git/ \
+ && mvn package
+WORKDIR /opt
+RUN cp git/target/hello-1.0.war tomcat/webapps/
+COPY tomcat-users.xml tomcat/conf/tomcat-users.xml
+CMD  tomcat/bin/startup.sh run && tail -f /opt/tomcat/logs/catalina.out
 EXPOSE 8080
