@@ -21,8 +21,9 @@ ENV M2_HOME=/opt/maven
 ENV MAVEN_HOME=/opt/maven
 ENV PATH=${M2_HOME}/bin:${PATH}
 RUN cd git/ \
- && mvn package \
- && cd ${WORKDIR}
+ && mvn package
+WORKDIR /opt
+RUN cp git/target/hello-1.0.war tomcat/webapps/
 COPY tomcat-users.xml tomcat/conf/tomcat-users.xml
 CMD  tomcat/bin/startup.sh run && tail -f /opt/tomcat/logs/catalina.out
 EXPOSE 8080
