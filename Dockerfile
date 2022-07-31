@@ -12,10 +12,10 @@ RUN tar xpvf tomcat/apache-tomcat-*.tar.gz -C tomcat/ --strip-components=1 \
  && tar xpvf maven/apache-maven-*-bin.tar.gz -C maven/ --strip-components=1 \
  && rm -f maven/apache-maven-*-bin.tar.gz
 RUN mkdir git/ \
- && git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git git/ \
- && cd git/boxfuse-sample-java-war-hello/ \
- && mvn package \
- && cd ${WORKDIR}
+ && git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git git/
+# && cd git/boxfuse-sample-java-war-hello/ \
+# && mvn package \
+# && cd ${WORKDIR}
 ENV JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64
 ENV JAVA_OPTS=-Djava.security.egd=file:///dev/urandom
 ENV CATALINA_PID=/opt/tomcat/temp/tomcat.pid
