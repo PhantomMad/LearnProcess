@@ -5,7 +5,7 @@ RUN apt update \
     wget \
  && rm -rf /var/lib/apt/lists/*
 WORKDIR /opt
-RUN useradd -m -U -d tomcat -s /bin/false tomcat
+RUN useradd -m -U -d tomcat/ -s /bin/false tomcat
 COPY apache-tomcat-*.tar.gz tomcat/
 RUN tar xpvf tomcat/apache-tomcat-*.tar.gz -C tomcat/ --strip-components=1 \
  && rm -f tomcat/apache-tomcat-*.tar.gz
