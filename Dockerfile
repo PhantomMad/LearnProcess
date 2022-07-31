@@ -4,9 +4,12 @@ RUN apt update \
     default-jdk \
  && rm -rf /var/lib/apt/lists/*
 WORKDIR /opt
-COPY apache-tomcat-*.tar.gz tomcat/
+COPY apache-tomcat-*.tar.gz tomcat/ \
+ && apache-maven-*-bin.tar.gz maven/
 RUN tar xpvf tomcat/apache-tomcat-*.tar.gz -C tomcat/ --strip-components=1 \
- && rm -f tomcat/apache-tomcat-*.tar.gz
+ && rm -f tomcat/apache-tomcat-*.tar.gz \
+ && tar xpvf maven/apache-maven-*-bin.tar.gz -C maven/ --strip-components=1 \
+ && rm -f maven/apache-maven-*-bin.tar.gz
 ENV JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64
 ENV JAVA_OPTS=-Djava.security.egd=file:///dev/urandom
 ENV CATALINA_PID=/opt/tomcat/temp/tomcat.pid
