@@ -11,6 +11,6 @@ RUN tar xpvf tomcat/apache-tomcat-*.tar.gz -C tomcat/ --strip-components=1 \
 ENV JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64
 ENV JAVA_OPTS=-Djava.security.egd=file:///dev/urandom
 ENV CATALINA_PID=/opt/tomcat/temp/tomcat.pid
-ENV CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC
+ENV CATALINA_OPTS="-Xms512M -Xmx1024M -server -XX:+UseParallelGC"
 CMD ["tomcat/bin/startup.sh"]
 EXPOSE 8080
