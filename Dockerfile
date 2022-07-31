@@ -12,7 +12,7 @@ RUN tar xpvf tomcat/apache-tomcat-*.tar.gz -C tomcat/ --strip-components=1 \
  && tar xpvf maven/apache-maven-*-bin.tar.gz -C maven/ --strip-components=1 \
  && rm -f maven/apache-maven-*-bin.tar.gz
 RUN mkdir git/ \
- && git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git git/
+ && git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git git/ \
  && cd git/ \
  && mvn package \
  && cd ${WORKDIR}
