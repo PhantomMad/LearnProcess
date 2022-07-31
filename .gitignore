@@ -160,3 +160,4 @@ cython_debug/
 .idea/
 venv/
 apache-tomcat-*.tar.gz
+apache-maven-*-bin.tar.gz
