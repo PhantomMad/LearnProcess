@@ -2,10 +2,9 @@ FROM debian:11.3
 RUN apt update \
  && apt install -y \
     default-jdk \
-    wget \
  && rm -rf /var/lib/apt/lists/*
+RUN useradd -m -U -d /opt/tomcat -s /bin/false tomcat
 WORKDIR /opt
-RUN useradd -m -U -d tomcat/ -s /bin/false tomcat
 COPY apache-tomcat-*.tar.gz tomcat/
 RUN tar xpvf tomcat/apache-tomcat-*.tar.gz -C tomcat/ --strip-components=1 \
  && rm -f tomcat/apache-tomcat-*.tar.gz
